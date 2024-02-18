@@ -9,7 +9,11 @@ import {
   ContactLoader,
   IndivitualContactLoader,
 } from "./components/ContactLoader";
-import { contactAction, contactUpdateAction } from "./actions/contactAction";
+import {
+  contactAction,
+  contactUpdateAction,
+  DeleteContactAction,
+} from "./actions/contactAction";
 import EditContact from "./routes/Edit";
 
 const router = createBrowserRouter([
@@ -35,6 +39,11 @@ const router = createBrowserRouter([
         element: <EditContact />,
         action: contactUpdateAction,
         loader: IndivitualContactLoader,
+      },
+      {
+        path: "/contacts/:contactId/destroy",
+        action: DeleteContactAction,
+        errorElement: <div>Oops! Something went wrong</div>,
       },
     ],
   },
