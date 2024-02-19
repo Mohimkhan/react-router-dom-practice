@@ -12,7 +12,8 @@ import {
 import {
   contactAction,
   contactUpdateAction,
-  DeleteContactAction,
+  deleteContactAction,
+  favoriteAction,
 } from "./actions/contactAction";
 import EditContact from "./routes/Edit";
 import Index from "./routes/Index";
@@ -27,17 +28,13 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Index/>
+        element: <Index />,
       },
       {
         path: "/contacts/:contactId",
         element: <Contact />,
         loader: IndivitualContactLoader,
-      },
-      {
-        path: "/contacts/:contactId",
-        element: <Contact />,
-        loader: IndivitualContactLoader,
+        action: favoriteAction,
       },
       {
         path: "/contacts/:contactId/edit",
@@ -47,7 +44,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/contacts/:contactId/destroy",
-        action: DeleteContactAction,
+        action: deleteContactAction,
         errorElement: <div>Oops! Something went wrong</div>,
       },
     ],
